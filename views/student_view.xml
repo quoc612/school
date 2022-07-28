@@ -6,7 +6,7 @@
             <field name="name">Students</field>
             <field name="res_model">student.student</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_mode">tree,form,kanban,graph</field>
             <field name="search_view_id" ref="student_search_view"/>
             <field name="context">{'search_default_female': 1}</field>
             <field name="domain">[]</field>
@@ -99,6 +99,16 @@
                         </t>
                     </templates>
                 </kanban>
+            </field>
+        </record>
+        <record id="student_graph_view" model="ir.ui.view">
+            <field name="name">student.student.graph</field>
+            <field name="model">student.student</field>
+            <field name="arch" type="xml">
+                <graph string="Student Graph">
+                    <field name="name"/>
+                    <field name="age"/>
+                </graph>
             </field>
         </record>
         <record id="student_search_view" model="ir.ui.view">
