@@ -2,6 +2,16 @@
 
 <odoo>
     <data>
+        <record id="student_menu_action" model="ir.actions.act_window">
+            <field name="name">Students</field>
+            <field name="res_model">student.student</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="search_view_id" ref="student_search_view"/>
+            <field name="context">{'search_default_female': 1}</field>
+            <field name="domain">[]</field>
+
+        </record>
         <record id="student_form_view" model="ir.ui.view">
             <field name="name">Student Form</field>
             <field name="model">student.student</field>
@@ -52,6 +62,45 @@
             </field>
 
         </record>
+        <record id="student_kanban_view" model="ir.ui.view">
+            <field name="name">student.student.kanban</field>
+            <field name="model">student.student</field>
+            <field name="arch" type="xml">
+                <kanban class="o_student_student_kanban">
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="gender"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                            <p>Name :
+                                                <field name="name"/>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>Age :
+                                                <field name="age"/>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>Gender :
+                                                <field name="gender"/>
+                                            </p>
+                                        </li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
         <record id="student_search_view" model="ir.ui.view">
             <field name="name">Students Search View</field>
             <field name="model">student.student</field>
@@ -72,16 +121,7 @@
             </field>
 
         </record>
-        <record id="student_menu_action" model="ir.actions.act_window">
-            <field name="name">Students</field>
-            <field name="res_model">student.student</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="student_search_view"/>
-            <field name="context">{'search_default_female': 1}</field>
-            <field name="domain">[]</field>
 
-        </record>
         <menuitem id="school_menu" name="School"/>
         <menuitem id="school_student_menu" parent="school_menu" name="Student" action="student_menu_action"/>
         <!--        hiển thị menu action-->
